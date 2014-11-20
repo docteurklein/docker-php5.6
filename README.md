@@ -3,9 +3,10 @@ docker-php-light
 
 # What ?
 
-A tool to generate small (~50Mo) docker images for php, based on a `scratch` base image.
+A tool to generate small (~55Mo) docker images for php, based on a `busybox` or `scratch` base image.
 
-    docker run --rm -it docteurklein/php5.6
+    docker run --rm -it docteurklein/php5.6:busybox
+    docker run --rm -it docteurklein/php5.6:latest # scratch
 
 # Why ?
 
@@ -15,7 +16,7 @@ For fun. The way I did it was very geeky :)
 
 # How ?
 
-How could a scratch image be used, when php cannot be statically compiled ?
+How could a busybox or scratch image be used, when php cannot be statically compiled ?
 
 First of all, most of the **extensions** can be compiled without using the `shared` option.  
 Some (like xdebug) can't, maybe because they are **zend** extensions.
@@ -29,6 +30,6 @@ Even if what I say may be totally wrong :), it doesn't change the facts: php rel
     ldd /usr/bin/php will tell you which of these libs **must** be present.
 
 
-What I've done is simply copied (ADDed in fact) those files inside the final (scratch) image.  
+What I've done is simply copied (ADDed in fact) those files inside the final image.  
 I also respected the prefix which I compiled php with (inside another container).
 

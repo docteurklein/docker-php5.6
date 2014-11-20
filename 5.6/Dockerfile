@@ -1,4 +1,4 @@
-FROM scratch
+FROM busybox
 ADD files/php /opt/php/5.6
 ADD files/usr/lib /usr/lib
 ADD files/lib64 /lib64
